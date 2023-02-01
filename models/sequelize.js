@@ -24,8 +24,8 @@ const initDb = ()=>{
         
             user.create({
                 id: 1,
-				userName: 'md',
-				email : "kdxknkn",
+				userName: 'leade',
+				email : "leader@gmail.com",
                 password: 'hash'
             })
         
