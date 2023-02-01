@@ -1,17 +1,15 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const dbConexion = require('./models/index');
 const port = process.env.SERVER_HOST_PORT || 3001
 
-
+dbConexion()
 const app = express();
 require('dotenv').config();
-
 const corsOptions = {
   origin : `${process.env.SERVER_HOST}:${process.env.SERVER_HOST_PORT}` || "http://localhost:3001" 
 }
-
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -24,6 +22,4 @@ app.get("/", (req, res) => {
 app.listen(port, ()=>{
     console.log(`listening on port ${port}`);
 })
-
-
 module.exports = app;
