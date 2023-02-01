@@ -1,20 +1,25 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const cors = require('cors');
+const port = process.env.PORT || 3001
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 
-var app = express();
+const app = express();
+require('dotenv').config();
 
-app.use(logger('dev'));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors());
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.get("/", (req, res) => {
+    res.json({ message: "Welcome to Saitama application." });
+  });
+
+app.listen(port, ()=>{
+    console.log(`listening on port ${port}`);
+})
+
 
 module.exports = app;
