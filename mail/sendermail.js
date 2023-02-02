@@ -1,23 +1,36 @@
 const nodemailer = require('nodemailer');
+const { google } = require('googleapis');
+const CLIENT_ID = "9136118842-ugbp2oiuek2kritvh2es1jv0drsgq55l.apps.googleusercontent.com"
+const CLIENT_SECRET = "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"
+const REDIRECT_URL = "https://developers.google.com/oauthplayground"
+const REFLESH_TOKEN = "1//04FG_FxyJnMFiCgYIARAAGAQSNwF-L9Ir19MLuY2UFbFTTdgbfmjfLPs5ljSw3_k55SkkNjRGSIo25F1XUr0Bb9RtShx4oajPxSQ"
+const OAuth2Client = google.auth.OAuth2;
+
+const oauthclient = new OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL)
+oauthclient.setCredentials({reflesh_token : REFLESH_TOKEN})
+
 
 const sendermail = async () => {
   // create a SMTP transporter
+  const accessToken = await oauthclient.getAccessToken('reflesh_token')
   const transporter = nodemailer.createTransport({
-    host: 'smtp.example.com',
-    port: 465,
-    secure: true, // use TLS
+    service: 'gmail',
     auth: {
-      user: 'user@example.com',
-      pass: 'password'
+      type: 'OAuth',
+      user: 'kananecompagny@gmail.com',
+      clientId : CLIENT_ID,
+      clientSecret : CLIENT_SECRET,
+      refleshToken : REFLESH_TOKEN,
+      accessToken : accessToken
     }
   });
 
   // define the email options
   const mailOptions = {
-    from: 'user@example.com',
-    to: 'recipient@example.com',
+    from: 'kananecompagny@gmail.com',
+    to: 'geekrdc243@gmail.com',
     subject: 'Hello, world!',
-    text: 'This is a test email.'
+    text: 'This is a test email for this api.'
   };
 
   // send the email

@@ -2,7 +2,7 @@ const sequelize = require('../../models/sequelize')
 
 const fetchAllControllers = async (req,res) => {
 	try {
-		const user = await sequelize.formation.findAll()
+		const user = await sequelize.letter.findAll()
 		if (user) {
 			res.status(200).json({
 				data: user,
