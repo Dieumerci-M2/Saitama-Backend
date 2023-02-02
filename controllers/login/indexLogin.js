@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-// const User = require('../../models/user');
-const { User } = require('../../models/sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
+const User = require('../../models/user')(Sequelize, DataTypes);
+// const { User } = require('../../models/sequelize');
 
 const login = (req, res) => {
     User.findOne({ where : { email : req.body.email }})
