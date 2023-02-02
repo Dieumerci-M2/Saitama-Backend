@@ -1,12 +1,13 @@
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
-const User = require('../../models/user.model');
+const bcrypt = require('bcryptjs');
+// const User = require('../../models/user');
+const { User } = require('../../models/sequelize');
 
-const login = async(req, res) => {
-    User.findOne({ where : { username : req.user.username }})
+const login = (req, res) => {
+    User.findOne({ where : { email : req.body.email }})
         .then(user => {
             if(!user){
-                return res.status(401).json({ message: 'Paire login/mot de passe incorrecte'});
+                return res.status(404).json({ message: 'l\'utilisateur n\'existe pas !'});
             }
             bcrypt.compare(req.body.password, user.password)
                   .then(valid => {

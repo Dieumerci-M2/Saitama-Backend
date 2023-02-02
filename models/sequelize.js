@@ -24,7 +24,7 @@ const initDb = ()=>{
         
             user.create({
                 id: 1,
-				userName: 'md',
+				username: 'md',
 				email : "kdxknkn",
                 password: 'hash'
             })
@@ -32,5 +32,5 @@ const initDb = ()=>{
         console.log(`la base de données à était bien synchroniser`);
     })
 }
-module.exports = {initDb, user};
+module.exports = {initDb, user, sequelize};
 

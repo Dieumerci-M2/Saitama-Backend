@@ -10,7 +10,7 @@ const port = process.env.SERVER_HOST_PORT || 8080
 const app = express();
 require('dotenv').config();
 const corsOptions = {
-  origin : `${process.env.SERVER_HOST}:${process.env.SERVER_HOST_PORT}` || "http://localhost:3001" 
+  origin : `${process.env.SERVER_HOST}:${process.env.SERVER_HOST_PORT}` || "http://localhost:8080" 
 }
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
