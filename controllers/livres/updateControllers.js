@@ -1,7 +1,7 @@
 const sequelize = require('../../models/sequelize')
 const updateControllers = async (req, res) => {
 	try {
-		const Formation = await sequelize.formation.findOne({
+		const Livres = await sequelize.livre.findOne({
 			where: {
 				titre: req.query.titre
 			}
@@ -9,7 +9,7 @@ const updateControllers = async (req, res) => {
 			return response.toJSON()
 		})
 		if (Formation) {
-			await sequelize.formation.update(
+			await sequelize.Livres.update(
 				 req.body
 			 ,
 				{
@@ -19,12 +19,12 @@ const updateControllers = async (req, res) => {
 				}
 			 )
 			res.status(200).json({
-				message : "cette formation a été modifiée avec succé"
+				message : "cet livre a été modifiée avec succé"
 			})
 			
 		} else {
 			res.status(400).json({
-				message : "Nous ne pouvons modifier cette formation car elle n'existe pas"
+				message : "Nous ne pouvons modifier cet livre car elle n'existe pas"
 			})
 		}
 	} catch (error) {

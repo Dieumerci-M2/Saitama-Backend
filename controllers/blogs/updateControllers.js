@@ -1,7 +1,7 @@
 const sequelize = require('../../models/sequelize')
 const updateControllers = async (req, res) => {
 	try {
-		const Formation = await sequelize.formation.findOne({
+		const Formation = await sequelize.blog.findOne({
 			where: {
 				titre: req.query.titre
 			}
