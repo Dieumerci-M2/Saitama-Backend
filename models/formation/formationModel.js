@@ -1,26 +1,34 @@
 module.exports = (sequelize,DataTypes) => {
-    return sequelize.define('user', {
+    return sequelize.define('formation', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
             
         },
-        username: {
+        titre: {
             type: DataTypes.STRING,
             allowNull: true,
             
         },
-        email: {
+        description: {
             type: DataTypes.STRING,
             allowNull: true,
-            unique: true,
-            isEmail : true
-        },
-        password: {
+		},
+		prix: {
             type: DataTypes.STRING,
             allowNull: true,
-        },
+		},
+		contenu: {
+            type: DataTypes.STRING,
+            allowNull: true,
+		},
+		pic: {
+			type: DataTypes.STRING,
+			allowNull: false,
+			isURL : true
+		}
+        
       
     },
         {
