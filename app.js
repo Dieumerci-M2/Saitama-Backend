@@ -12,6 +12,7 @@ const port = process.env.SERVER_HOST_PORT || 8080
 
 
 const app = express();
+app.set('view engine', 'ejs');
 require('dotenv').config();
 const corsOptions = {
   origin : `${process.env.SERVER_HOST}:${process.env.SERVER_HOST_PORT}` || "http://localhost:8080" 
