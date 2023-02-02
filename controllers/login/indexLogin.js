@@ -1,11 +1,10 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const { Sequelize, DataTypes } = require('sequelize');
-const User = require('../../models/user')(Sequelize, DataTypes);
-// const { User } = require('../../models/sequelize');
+const sequelize = require('../../models/sequelize');
+const JWT_LOGIN_TOKEN = 'USER_SAITAMA_MINDSET_RANDOM_TOKEN_SECRET';
 
 const login = (req, res) => {
-    User.findOne({ where : { email : req.body.email }})
+    sequelize.user.findOne({ where : { email : req.body.email }})
         .then(user => {
             if(!user){
                 return res.status(404).json({ message: 'l\'utilisateur n\'existe pas !'});
@@ -18,9 +17,10 @@ const login = (req, res) => {
                     res.status(200).json({
                         id : user.id,
                         username : user.username,
+                        email : user.email,
                         token : jwt.sign(
                             {userId : user._id},
-                            'USER_SAITAMA_MINDSET_RANDOM_TOKEN_SECRET',
+                            JWT_LOGIN_TOKEN,
                             { expiresIn: '24h' }
                         )
                     })
