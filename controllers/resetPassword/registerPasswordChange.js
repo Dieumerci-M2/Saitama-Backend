@@ -10,7 +10,7 @@ const updatepassword = async (req, res) => {
     }
 	const hash = await bcrypt.hash(password, 10)
     const data = sequelize.user.update({ password : hash }, { where : { id : req.params.id }})
-    res.status(200).json({message : "Password updated successfully !"})
+    res.status(200).json({message : "Password updated successfully !!!!!"})
 
 }
 

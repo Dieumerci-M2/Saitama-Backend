@@ -7,6 +7,7 @@ const formationRoute = require('./routes/formations/formationRoutes');
 const bookRoute = require('./routes/livres/livre');
 const blogsRoute = require('./routes/blogs/blogRoutes');
 const letterRoute = require('./routes/letters/letter');
+const bitcoinRouter = require('./routes/payment/bitcoinRoutes');
 const port = process.env.SERVER_HOST_PORT || 8080
 
 
@@ -26,7 +27,8 @@ app.use('/api/v1/', formationRoute)
 app.use('/api/v1/', bookRoute)
 app.use('/api/v1/', blogsRoute)
 app.use('/api/v1/', blogsRoute)
-app.use('/api/v1/',letterRoute)
+app.use('/api/v1/', letterRoute)
+//app.use('/api/v1/', bitcoinRouter)
 sequelize.initDb()
 app.listen(port, ()=>{
     console.log(`listening on port ${port}`);
