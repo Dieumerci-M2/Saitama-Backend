@@ -6,6 +6,7 @@ const livreModel = require('../models/livres/livresModel')
 const newsletterModel = require('../models/newsletter/newsletter')
 const messageModel = require('../models/messages/messageModel')
 const formationModel = require('../models/formation/formationModel')
+const tronModel = require('../models/paiement/tron/tronModel')
 const sequelize = new Sequelize(
     'saitama',
     'root',
@@ -26,7 +27,7 @@ const livre = livreModel(sequelize, DataTypes)
 const message = messageModel(sequelize, DataTypes)
 const letter = newsletterModel(sequelize, DataTypes)
 const formation = formationModel(sequelize, DataTypes)
-
+const tronPaiement = tronModel(sequelize, DataTypes)
 const initDb = ()=>{
     return sequelize.sync({force: true}).then(()=>{
             user.create({
@@ -42,6 +43,13 @@ const initDb = ()=>{
             prix: '200$',
             contenu:"mindser",
             pic : "https://images.app.goo.gl/9dRW3X8u4o1PA2Zp9"
+        })
+          tronPaiement.create({
+            id: 1,
+            titre: "saitama",
+              montant: "10",
+              adress_from: "TW5PycWCJxek6jvbD926kmLzj35XgJWPXQ",
+            adress_to:"TE6mjvytKH63B65u4PpfCmhfez7Af1JFc7"
         })
         blog.create({
             id: 1,
@@ -77,5 +85,5 @@ const initDb = ()=>{
         console.log(err);
     })
 }
-module.exports = { initDb, user, formation, livre,blog,message,letter};
+module.exports = { initDb, user, formation, livre,blog,message,letter,tronPaiement};
 
