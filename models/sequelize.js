@@ -1,11 +1,12 @@
 const {Sequelize, DataTypes} = require('sequelize')
 
-const userModel = require('../models/user')
+const userModel = require('./users/user')
 const blogModel = require('../models/blogs/Modelblogs')
 const livreModel = require('../models/livres/livresModel')
 const newsletterModel = require('../models/newsletter/newsletter')
 const messageModel = require('../models/messages/messageModel')
 const formationModel = require('../models/formation/formationModel')
+const btnModel = require('../models/btnModel/btnmodel')
 const sequelize = new Sequelize(
     'saitama',
     'root',
@@ -26,6 +27,7 @@ const livre = livreModel(sequelize, DataTypes)
 const message = messageModel(sequelize, DataTypes)
 const letter = newsletterModel(sequelize, DataTypes)
 const formation = formationModel(sequelize, DataTypes)
+const btn = btnModel(sequelize, DataTypes) 
 
 const initDb = ()=>{
     return sequelize.sync({force: true}).then(()=>{
@@ -78,4 +80,4 @@ const initDb = ()=>{
     })
 }
 
-module.exports = { initDb, user, formation, livre,blog,message,letter};
+module.exports = { initDb, user, formation, livre,blog,message,letter, btn};

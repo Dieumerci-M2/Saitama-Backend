@@ -25,22 +25,22 @@ const sendermail = async () => {
     }
   });
 
-  // define the email options
-  const mailOptions = {
-    from: 'kananecompagny@gmail.com',
-    to: 'geekrdc243@gmail.com',
-    subject: 'Hello, world!',
-    text: 'This is a test email for this api.'
-  };
+  // // define the email options
+  // const mailOptions = {
+  //   from: 'kananecompagny@gmail.com',
+  //   to: 'geekrdc243@gmail.com',
+  //   subject: 'Hello, world!',
+  //   text: 'This is a test email for this api.'
+  // };
 
-  // send the email
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.error(error);
-    } else {
-      console.log(`Email sent: ${info.messageId}`);
-    }
-  });
+  // // send the email
+  // transporter.sendMail(mailOptions, (error, info) => {
+  //   if (error) {
+  //     console.error(error);
+  //   } else {
+  //     console.log(`Email sent: ${info.messageId}`);
+  //   }
+  // });
 }    
 
 module.exports = sendermail
