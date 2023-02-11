@@ -85,5 +85,7 @@ const initDb = ()=>{
         console.log(err);
     })
 }
+
 module.exports = { initDb, user, formation, livre,blog,message,letter,tronPaiement};
+
 
