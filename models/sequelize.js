@@ -7,6 +7,7 @@ const newsletterModel = require('../models/newsletter/newsletter')
 const messageModel = require('../models/messages/messageModel')
 const formationModel = require('../models/formation/formationModel')
 const btnModel = require('../models/btnModel/btnmodel')
+const paiementModel = require('../models/paiement/tron/tronModel')
 const sequelize = new Sequelize(
     'saitama',
     'root',
@@ -28,6 +29,8 @@ const message = messageModel(sequelize, DataTypes)
 const letter = newsletterModel(sequelize, DataTypes)
 const formation = formationModel(sequelize, DataTypes)
 const btn = btnModel(sequelize, DataTypes) 
+const tronPaiement = paiementModel(sequelize, DataTypes)
+
 
 const initDb = ()=>{
     return sequelize.sync({force: true}).then(()=>{
@@ -80,4 +83,4 @@ const initDb = ()=>{
     })
 }
 
-module.exports = { initDb, user, formation, livre,blog,message,letter, btn};
+module.exports = { initDb, user, formation, livre,blog,message,letter, btn, tronPaiement};

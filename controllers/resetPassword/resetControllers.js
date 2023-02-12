@@ -1,7 +1,7 @@
 const sequelize = require('../../models/sequelize')
 const jwt = require('jsonwebtoken')
 const JWT_RESET_KEY_SECRET = "the super secret to reset the password by sending a mail to the user.";
-const sendermail = require('../../mail/sendermail');
+const transporter = require('../../mail/sendermail');
 const resetPasswordControllers = async (req, res) => {
 	try {
         const user = await sequelize.user.findOne({ where : { email : req.body.email }})
@@ -24,14 +24,13 @@ const resetPasswordControllers = async (req, res) => {
         };
 
         // send the email
-        const transpoter = transporter.sendMail(mailOptions, (error, info) => {
+        transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
             console.error(error);
             } else {
             console.log(`Email sent: ${info.messageId}`);
             }
         });
-        sendermail(transpoter)
         res.status(200).send(link);
     } catch (error) {
         res.status(500).json({ error: error })

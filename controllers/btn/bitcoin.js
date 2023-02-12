@@ -1,6 +1,6 @@
 const coinbase = require('coinbase-commerce-node')
 const sequelize = require("../../models/sequelize");
-const sendermail = require("../../mail/sendermail")
+const transporter = require("../../mail/sendermail")
 
 const bitcoinController = async (req, res) => {    
 // Coinbase setup
@@ -21,25 +21,24 @@ Charge.create(chargeData, (err, response) => {
     if (err) {
         res.status(400).send({message: err.message});
     }
-    res.status(200).send(response.hosted_url);
+    res.status(200).send(response);
     const url = response.hosted_url
       // define the email options
     const mailOptions = {
         from: 'kananecompagny@gmail.com',
-        to:sequelize.user.email,
+        to: 'jkanane.ac.isig@gmail.com',
         subject: 'Complete the payment',
         text: `Please complete the payment by clicking on this link => ${url}`
     };
 
     // send the email
-    const transpoter = transporter.sendMail(mailOptions, (error, info) => {
+    transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
         console.error(error);
         } else {
         console.log(`Email sent: ${info.messageId}`);
         }
     });
-    sendermail(transpoter)
 });
 
 }
