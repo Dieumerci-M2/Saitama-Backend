@@ -10,6 +10,7 @@ const Charge = coinbase.resources.Charge;
 
 let chargeData = {
     name: req.body.name,
+    email: req.body.email,
     description: req.body.decription,
     local_price: {
         amount: req.body.amount,
@@ -18,6 +19,7 @@ let chargeData = {
     pricing_type: 'fixed_price'
 }
 Charge.create(chargeData, (err, response) => {
+try {
     if (err) {
         res.status(400).send({message: err.message});
     }
@@ -26,7 +28,7 @@ Charge.create(chargeData, (err, response) => {
       // define the email options
     const mailOptions = {
         from: 'kananecompagny@gmail.com',
-        to: 'geekrdc243@gmail.com',
+        to: chargeData.email,
         subject: 'Complete the payment',
         text: `Please complete the payment by clicking on this link => ${url}`
     };
@@ -36,9 +38,15 @@ Charge.create(chargeData, (err, response) => {
         if (error) {
         console.error(error);
         } else {
-        console.log(`Email sent: ${info.messageId}`);
+            console.log(`An email has been sent, please check your box mail`);
+        res.status(201).json({message : `An email has been sent, please check your box mail`});
         }
     });
+    
+} catch (error) {
+    res.status(500).json({message: `Server error: ${error}`})
+    
+}
 });
 
 }
