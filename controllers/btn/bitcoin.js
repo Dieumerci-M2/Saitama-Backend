@@ -10,6 +10,7 @@ const Charge = coinbase.resources.Charge;
 
 let chargeData = {
     name: req.body.name,
+    email: req.body.email,
     description: req.body.decription,
     local_price: {
         amount: req.body.amount,
@@ -27,7 +28,7 @@ try {
       // define the email options
     const mailOptions = {
         from: 'kananecompagny@gmail.com',
-        to: 'dieumerci.md09@gmail.com',
+        to: chargeData.email,
         subject: 'Complete the payment',
         text: `Please complete the payment by clicking on this link => ${url}`
     };
